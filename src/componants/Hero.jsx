@@ -23,7 +23,7 @@ const Hero = () => {
       <div className="px-4 pb-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
           <div className="bg-white shadow-sm  rounded p-6 text-center">
-            <h2 className="text-2xl font-bold text-gray-800">10</h2>
+            <h2 className="text-2xl font-bold text-gray-800">12</h2>
             <p className="text-sm text-gray-500 mt-1">Total Friends</p>
           </div>
 

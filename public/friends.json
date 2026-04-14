@@ -37,7 +37,7 @@
   },
   {
     "id": 5,
-    "name": "Random User",
+    "name": "Anna aires",
     "picture": "https://i.ibb.co.com/6R8QbtGw/images.jpg",
     "email": "user@example.com",
     "days_since_contact": 10,
@@ -50,7 +50,7 @@
   {
     "id": 6,
     "name": "Eva Victor",
-    "picture": "https://i.ibb.co.com/GQXpMWGX/LEAD-RS-Eva-Victor-Select1.webp",
+    "picture": "https://i.ibb.co.com/BV1cPhDJ/eva.jpg",
     "email": "eva@example.com",
     "days_since_contact": 3,
     "status": "active",
@@ -86,7 +86,7 @@
   {
     "id": 9,
     "name": "Michael Lee",
-    "picture": "https://i.ibb.co.com/gMCpBh1g/alex.jpg",
+    "picture": "https://i.ibb.co.com/q3tw3Bjy/Michael-lee.jpg",
     "email": "michael@example.com",
     "days_since_contact": 30,
     "status": "overdue",
@@ -106,5 +106,41 @@
     "bio": "College group mate.",
     "goal": 14,
     "next_due_date": "2025-07-17"
+  },
+  {
+    "id": 11,
+    "name": "Alex",
+    "picture": "https://i.ibb.co.com/gMCpBh1g/alex.jpg",
+    "email": "newperson@example.com",
+    "days_since_contact": 0,
+    "status": "active",
+    "tags": ["new"],
+    "bio": "Recently added contact.",
+    "goal": 5,
+    "next_due_date": "2025-08-01"
+  },
+  {
+    "id": 12,
+    "name": "Sophie Turner",
+    "picture": "https://i.ibb.co.com/d0Svv8tH/shopie-tarner.jpg",
+    "email": "sophie@example.com",
+    "days_since_contact": 9,
+    "status": "active",
+    "tags": ["friend", "travel"],
+    "bio": "Travel buddy and close friend.",
+    "goal": 10,
+    "next_due_date": "2025-07-26"
+  },
+  {
+    "id": 13,
+    "name": "Daniel Craig",
+    "picture": "https://i.ibb.co.com/BV1cPhDJ/eva.jpg",
+    "email": "daniel@example.com",
+    "days_since_contact": 22,
+    "status": "overdue",
+    "tags": ["work"],
+    "bio": "Former colleague from office.",
+    "goal": 14,
+    "next_due_date": "2025-07-16"
   }
 ]
