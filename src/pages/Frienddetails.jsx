@@ -1,11 +1,16 @@
-import React, { use } from "react";
+import React, { use, useContext } from "react";
 import { useParams } from "react-router";
+import { friendContext } from "../context/Context";
 
 const friendPromise = fetch("/friends.json").then((res) => res.json());
 
 const Frienddetails = () => {
   const friendData = use(friendPromise);
   const { id } = useParams();
+
+  const { handleCall, storeFriend, handleText, handleVideo } =
+    useContext(friendContext);
+
 
   const friend = friendData.find((f) => f.id == id);
 
@@ -21,13 +26,12 @@ const Frienddetails = () => {
             className="w-20 h-20 rounded-full mx-auto"
           />
           <h2 className="text-lg font-semibold">{friend.name}</h2>
-          <div className="flex justify-center">
-            <span className="text-[10px] px-2 py-1 rounded-full bg-red-100 text-red-500 uppercase">
-              {friend.status}
-            </span>
-          </div>
 
-          <div className="flex justify-center gap-2 flex-wrap">
+          <span className="text-[10px] px-2 py-1 rounded-full bg-red-100 text-red-500 uppercase">
+            {friend.status}
+          </span>
+
+          <div className="flex justify-center gap-2 flex-wrap mt-4">
             {friend.tags.map((tag, i) => (
               <span
                 key={i}
@@ -87,14 +91,29 @@ const Frienddetails = () => {
 
           <div className="bg-white p-5 rounded-xl shadow">
             <h3 className="font-semibold mb-3">Quick Check-In</h3>
+
             <div className="grid grid-cols-3 gap-3">
-              <button className="bg-gray-100 rounded-lg py-4 cursor-pointer">
+              <button
+                onClick={() => handleCall(friend)}
+                className="bg-gray-100 rounded-lg py-4 cursor-pointer
+    active:scale-95 active:bg-gray-300 transition duration-150 hover:bg-gray-200"
+              >
                 Call
               </button>
-              <button className="bg-gray-100 rounded-lg py-4 cursor-pointer">
+
+              <button
+                onClick={() => handleText(friend)}
+                className="bg-gray-100 rounded-lg py-4 cursor-pointer
+    active:scale-95 active:bg-gray-300 transition duration-150 hover:bg-gray-200"
+              >
                 Text
               </button>
-              <button className="bg-gray-100 rounded-lg py-4 cursor-pointer">
+
+              <button
+                onClick={() => handleVideo(friend)}
+                className="bg-gray-100 rounded-lg py-4 cursor-pointer
+    active:scale-95 active:bg-gray-300 transition duration-150 hover:bg-gray-200"
+              >
                 Video
               </button>
             </div>
@@ -111,10 +130,12 @@ const Frienddetails = () => {
                 <span>Text - Asked for advice</span>
                 <span>{friend.next_due_date}</span>
               </div>
+
               <div className="flex justify-between">
                 <span>Meetup - Casual meet</span>
                 <span>{friend.next_due_date}</span>
               </div>
+
               <div className="flex justify-between">
                 <span>Video - Catch up</span>
                 <span>{friend.next_due_date}</span>
