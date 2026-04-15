@@ -8,9 +8,7 @@ const Frienddetails = () => {
   const friendData = use(friendPromise);
   const { id } = useParams();
 
-  const { handleCall, storeFriend, handleText, handleVideo } =
-    useContext(friendContext);
-
+  const { handleCall, handleText, handleVideo } = useContext(friendContext);
 
   const friend = friendData.find((f) => f.id == id);
 
