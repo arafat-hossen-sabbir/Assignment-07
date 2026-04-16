@@ -1,7 +1,15 @@
-import React, { use } from "react";
+import React, { use, Suspense } from "react";
 import { Link } from "react-router";
 
 const friendPromise = fetch("/friends.json").then((res) => res.json());
+
+const Loader = () => {
+  return (
+    <div className="flex justify-center items-center py-20">
+      <div className="w-10 h-10 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+    </div>
+  );
+};
 
 const Allfriends = () => {
   const friendData = use(friendPromise);
@@ -66,4 +74,10 @@ const Allfriends = () => {
   );
 };
 
-export default Allfriends;
+export default function AllfriendsPage() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <Allfriends />
+    </Suspense>
+  );
+}

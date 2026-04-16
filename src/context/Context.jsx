@@ -4,48 +4,47 @@ import { toast } from "react-toastify";
 export const friendContext = createContext();
 
 const Context = ({ children }) => {
-  const [storeFriend, setStoreFriend] = useState([]);
-  const [storeText, setStoreText] = useState([]);
-  const [storeVideo, setStoreVideo] = useState([]);
+  
+  const [storeActivity, setStoreActivity] = useState([]);
 
-  const handleCall = (friend) => {
-    setStoreFriend((prev) => [
+  const addActivity = (friend, type, message, icon) => {
+    setStoreActivity((prev) => [
       ...prev,
-      { ...friend, type: "call", date: new Date() },
+      {
+        id: Date.now(),
+        friendId: friend.id,
+        name: friend.name,
+        type,
+        date: new Date().toISOString(),
+      },
     ]);
 
-    toast(`📞  Call with ${friend.name}`);
+    toast(`${icon} ${message} ${friend.name}`);
+  };
+
+  const handleCall = (friend) => {
+    addActivity(friend, "call", "Call with", "📞");
   };
 
   const handleText = (friend) => {
-    setStoreText((prev) => [
-      ...prev,
-      { ...friend, type: "text", date: new Date() },
-    ]);
-
-    toast(`💬 Text with ${friend.name}`);
+    addActivity(friend, "text", "Text with", "💬");
   };
 
   const handleVideo = (friend) => {
-    setStoreVideo((prev) => [
-      ...prev,
-      { ...friend, type: "video", date: new Date() },
-    ]);
-
-    toast(`🎥 Video call with ${friend.name}`);
-  };
-
-  const data = {
-    storeFriend,
-    storeText,
-    storeVideo,
-    handleCall,
-    handleText,
-    handleVideo,
+    addActivity(friend, "video", "Video call with", "🎥");
   };
 
   return (
-    <friendContext.Provider value={data}>{children}</friendContext.Provider>
+    <friendContext.Provider
+      value={{
+        storeActivity,
+        handleCall,
+        handleText,
+        handleVideo,
+      }}
+    >
+      {children}
+    </friendContext.Provider>
   );
 };
 

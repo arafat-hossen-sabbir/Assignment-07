@@ -3,15 +3,15 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { friendContext } from "../context/Context";
 
 const Stats = () => {
-  const { storeFriend, storeText, storeVideo } = useContext(friendContext);
-  const allData = [...storeFriend, ...storeText, ...storeVideo];
+  const { storeActivity } = useContext(friendContext);
+
   const counts = {
     text: 0,
     call: 0,
     video: 0,
   };
 
-  allData.forEach((item) => {
+  storeActivity.forEach((item) => {
     if (counts[item.type] !== undefined) {
       counts[item.type]++;
     }
@@ -45,7 +45,7 @@ const Stats = () => {
                 paddingAngle={4}
               >
                 {data.map((item, index) => (
-                  <Cell key={index} fill={item.color} strokeWidth={0} />
+                  <Cell key={index} fill={item.color} />
                 ))}
               </Pie>
 

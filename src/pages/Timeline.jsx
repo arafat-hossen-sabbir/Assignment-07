@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { friendContext } from "../context/Context";
 
 const Timeline = () => {
-  const { storeFriend, storeText, storeVideo } = useContext(friendContext);
+  const { storeActivity } = useContext(friendContext);
 
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("all");
@@ -14,18 +14,17 @@ const Timeline = () => {
     { value: "video", label: "Video", icon: "🎥" },
   ];
 
-  const allData = [...storeFriend, ...storeText, ...storeVideo];
+  let filteredData = storeActivity;
 
-  let filteredData;
-  if (selected === "all") {
-    filteredData = allData;
-  } else {
-    filteredData = allData.filter((item) => item.type === selected);
+  if (selected !== "all") {
+    filteredData = filteredData.filter((item) => item.type === selected);
   }
 
-  filteredData.sort((a, b) => new Date(b.date) - new Date(a.date));
+  filteredData = [...filteredData].sort(
+    (a, b) => new Date(b.date) - new Date(a.date),
+  );
 
-  const current = options.find((opt) => opt.value === selected);
+  const current = options.find((opt) => opt.value === selected) || options[0];
 
   return (
     <div className="max-w-3xl mx-auto p-6">
@@ -40,11 +39,7 @@ const Timeline = () => {
             <span>{current.icon}</span>
             <span>{current.label}</span>
 
-            <svg
-              width="10"
-              height="10"
-              className={`${open ? "rotate-180" : ""}`}
-            >
+            <svg width="10" height="10">
               <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" />
             </svg>
           </button>
@@ -87,9 +82,9 @@ const Timeline = () => {
         </div>
       ) : (
         <div className="space-y-4">
-          {filteredData.map((item, index) => (
+          {filteredData.map((item) => (
             <div
-              key={item.id || index}
+              key={item.id}
               className="bg-white shadow rounded-lg p-4 flex gap-4 items-center"
             >
               <div className="text-2xl">

@@ -1,6 +1,7 @@
 import React, { use, useContext } from "react";
 import { useParams } from "react-router";
 import { friendContext } from "../context/Context";
+import { IoMdCall } from "react-icons/io";
 
 const friendPromise = fetch("/friends.json").then((res) => res.json());
 
@@ -96,7 +97,7 @@ const Frienddetails = () => {
                 className="bg-gray-100 rounded-lg py-4 cursor-pointer
     active:scale-95 active:bg-gray-300 transition duration-150 hover:bg-gray-200"
               >
-                Call
+                📞 Call
               </button>
 
               <button
@@ -104,7 +105,7 @@ const Frienddetails = () => {
                 className="bg-gray-100 rounded-lg py-4 cursor-pointer
     active:scale-95 active:bg-gray-300 transition duration-150 hover:bg-gray-200"
               >
-                Text
+                💬 Text
               </button>
 
               <button
@@ -112,7 +113,7 @@ const Frienddetails = () => {
                 className="bg-gray-100 rounded-lg py-4 cursor-pointer
     active:scale-95 active:bg-gray-300 transition duration-150 hover:bg-gray-200"
               >
-                Video
+                🎥  Video
               </button>
             </div>
           </div>
